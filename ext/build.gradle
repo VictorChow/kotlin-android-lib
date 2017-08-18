@@ -6,11 +6,11 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
 
-
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 26
     }
+
     buildTypes {
         release {
             minifyEnabled false
