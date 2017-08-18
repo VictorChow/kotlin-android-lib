@@ -1,6 +1,7 @@
 package pers.victor.ext
 
 import android.animation.Animator
+import android.os.Build
 import android.support.v4.view.ViewPager
 import android.text.Editable
 import android.text.TextWatcher
@@ -34,16 +35,18 @@ fun Animator.addListener(init: AnimatorListenerWrapper.() -> Unit) {
 }
 
 fun Animator.addPauseListener(init: AnimatorPauseListenerWrapper.() -> Unit) {
-    val wrapper = AnimatorPauseListenerWrapper().apply { init() }
-    addPauseListener(object : Animator.AnimatorPauseListener {
-        override fun onAnimationPause(p0: Animator?) {
-            wrapper.onPause?.invoke()
-        }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        val wrapper = AnimatorPauseListenerWrapper().apply { init() }
+        addPauseListener(object : Animator.AnimatorPauseListener {
+            override fun onAnimationPause(p0: Animator?) {
+                wrapper.onPause?.invoke()
+            }
 
-        override fun onAnimationResume(p0: Animator?) {
-            wrapper.onResume?.invoke()
-        }
-    })
+            override fun onAnimationResume(p0: Animator?) {
+                wrapper.onResume?.invoke()
+            }
+        })
+    }
 }
 
 fun TextView.addTextChangedListener(init: TextWatcherWrapper.() -> Unit) {

@@ -13,7 +13,7 @@ private var toast: Toast? = null
 @SuppressLint("ShowToast")
 fun toast(msg: Any, isShortToast: Boolean = true) {
     if (toast == null) {
-        toast = Toast.makeText(extAppCtx, msg.toString(), Toast.LENGTH_SHORT)
+        toast = Toast.makeText(Ext.ctx, msg.toString(), Toast.LENGTH_SHORT)
     } else {
         toast!!.setText(msg.toString())
     }

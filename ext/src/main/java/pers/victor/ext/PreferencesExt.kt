@@ -6,7 +6,7 @@ import android.preference.PreferenceManager
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
-private val sp = PreferenceManager.getDefaultSharedPreferences(extAppCtx)
+private val sp = PreferenceManager.getDefaultSharedPreferences(Ext.ctx)
 
 fun spSetInt(key: String, value: Int) = sp.edit().putInt(key, value).apply()
 

@@ -13,19 +13,19 @@ import android.view.inputmethod.InputMethodManager
  */
 
 val connectivityManager: ConnectivityManager
-    get() = extAppCtx!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    get() = Ext.ctx!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
 val alarmManager: AlarmManager
-    get() = extAppCtx!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    get() = Ext.ctx!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
 val telephonyManager: TelephonyManager
-    get() = extAppCtx!!.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+    get() = Ext.ctx!!.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
 val activityManager: ActivityManager
-    get() = extAppCtx!!.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    get() = Ext.ctx!!.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
 val notificationManager: NotificationManager
-    get() = extAppCtx!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    get() = Ext.ctx!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 val inputMethodManager: InputMethodManager
-    get() = extAppCtx!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    get() = Ext.ctx!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
