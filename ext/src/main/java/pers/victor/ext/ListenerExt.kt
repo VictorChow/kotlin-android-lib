@@ -76,7 +76,6 @@ fun ViewPager.addOnPageChangeListener(init: OnPageChangeListenerWrapper.() -> Un
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             wrapper.onPageScrolled?.invoke(position, positionOffset, positionOffsetPixels)
-
         }
 
         override fun onPageSelected(position: Int) {
