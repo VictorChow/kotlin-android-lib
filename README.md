@@ -16,13 +16,16 @@ fun Activity.sms(phone: String?, body: String = "")
 //清除window背景
 fun Activity.clearWindowBackground()
 
-//startActivity<NewActivity>()
+// startActivity<NewActivity>()
 inline fun <reified T> Activity.startActivity()
-//startActivityForResult<NewActivity>(110)
+
+// startActivityForResult<NewActivity>(110)
 inline fun <reified T> Activity.startActivityForResult(requestCode: Int)
-//startService<NewService>()
+
+// startService<NewService>()
 inline fun <reified T> Activity.startService()
-//bindService<NewService>(sc)
+
+// bindService<NewService>(sc)
 inline fun <reified T> Activity.bindService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE)
 ```
 
@@ -59,6 +62,12 @@ fun TextView.bold()
 ### CommonExt
 
 ```kotlin
+//屏幕尺寸、密度
+val screenWidth: Int
+val screenHeight: Int
+val screenDensity: Float
+val scaledDensity: Float
+
 //使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
 fun findDrawable(@DrawableRes resId: Int)
@@ -69,6 +78,36 @@ fun inflate(@LayoutRes layoutId: Int)
 
 fun dp2px(dp: Number)
 fun sp2px(sp: Number)
+```
+
+### DateTimeExt
+
+```kotlin
+//格式化日期
+fun Long.date(pattern: String = "yyyy-MM-dd HH:mm:ss")
+fun Long.year()
+fun Long.month()
+fun Long.day()
+fun Long.hour()
+fun Long.minute()
+fun Long.second()
+fun Long.week()
+//获取是一年第几天
+fun Long.dayOfYear()
+//获取是一年第几周
+fun Long.weekOfYear()
+//获取星座
+fun Long.constellation()
+//是否闰年
+fun Int.isLeapYear()
+```
+
+### StringExt
+
+```kotlin
+fun String.toast()
+fun String.md5()
+fun String.sha1()
 ```
 
 ### ListenerExt
@@ -168,8 +207,12 @@ allprojects {
 ```
 
 ```groovy
+//依赖项
+//org.jetbrains.kotlin:kotlin-stdlib-jre
+//com.android.support:appcompat-v7
+
 dependencies {
-   compile('com.github.VictorChow:KotlinAndroidLib:0.0.1') {
+   compile('com.github.VictorChow:KotlinAndroidLib:0.0.2') {
         transitive = false
     }
 }
