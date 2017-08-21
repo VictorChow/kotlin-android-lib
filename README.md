@@ -2,33 +2,6 @@
 
 一些Android开发的扩展。
 
-### ActivityExt
-
-```kotlin
-//隐藏输入法
-fun Activity.hideInputMethod()
-//显示输入法
-fun Activity.showInputMethod(v: EditText)
-//跳转到拨号界面
-fun Activity.dial(tel: String?)
-//跳转到短信界面
-fun Activity.sms(phone: String?, body: String = "")
-//清除window背景
-fun Activity.clearWindowBackground()
-
-// startActivity<NewActivity>()
-inline fun <reified T> Activity.startActivity()
-
-// startActivityForResult<NewActivity>(110)
-inline fun <reified T> Activity.startActivityForResult(requestCode: Int)
-
-// startService<NewService>()
-inline fun <reified T> Activity.startService()
-
-// bindService<NewService>(sc)
-inline fun <reified T> Activity.bindService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE)
-```
-
 ### ViewExt
 
 ```kotlin
@@ -48,7 +21,7 @@ fun View.animateWidthBy(toValue: Int, duration: Long, interpolator: Interpolator
 fun View.animateHeight(toValue: Int, duration: Long, interpolator: Interpolator)
 fun View.animateHeightBy(toValue: Int, duration: Long, interpolator: Interpolator)
 
-//获取ViewGroup所有子View
+//获取ViewGroup子View
 val ViewGroup.children: List<View>
 
 //TextView下划线
@@ -78,6 +51,11 @@ fun inflate(@LayoutRes layoutId: Int)
 
 fun dp2px(dp: Number)
 fun sp2px(sp: Number)
+
+//跳转到拨号界面
+fun Context.dial(tel: String?)
+//跳转到短信界面
+fun Context.sms(phone: String?, body: String = "")
 ```
 
 ### DateTimeExt
@@ -212,7 +190,7 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-   compile('com.github.VictorChow:KotlinAndroidLib:0.0.2') {
+   compile('com.github.VictorChow:KotlinAndroidLib:JitPack-Version') {
         transitive = false
     }
 }
