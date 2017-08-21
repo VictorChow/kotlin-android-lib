@@ -8,7 +8,7 @@ import android.app.Application
 object Ext {
     lateinit var ctx: Application
 
-    fun with(ctx: Application) {
-        this.ctx = ctx
+    fun with(app: Application) {
+        this.ctx = app
     }
 }

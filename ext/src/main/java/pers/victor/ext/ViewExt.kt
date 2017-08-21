@@ -24,6 +24,10 @@ fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, pad
 
 fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop, value, paddingBottom)
 
+fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop, value, paddingBottom)
+
+fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, value)
+
 fun View.setHeight(value: Int) {
     val lp = layoutParams
     if (lp != null) {
@@ -36,6 +40,15 @@ fun View.setWidth(value: Int) {
     val lp = layoutParams
     if (lp != null) {
         lp.width = value
+        layoutParams = lp
+    }
+}
+
+fun View.resize(width: Int, height: Int) {
+    val lp = layoutParams
+    if (lp != null) {
+        lp.width = width
+        lp.height = height
         layoutParams = lp
     }
 }

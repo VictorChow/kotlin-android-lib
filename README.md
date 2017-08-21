@@ -12,10 +12,15 @@ fun View.setPaddingTop(value: Int)
 fun View.setPaddingBottom(value: Int)
 fun View.setPaddingStart(value: Int)
 fun View.setPaddingEnd(value: Int)
+fun View.setPaddingHorizontal(value: Int)
+fun View.setPaddingVertical(value: Int)
 
 //设置宽高
 fun View.setWidth(value: Int)
 fun View.setHeight(value: Int)
+fun View.resize(width: Int, height: Int)
+
+//设置宽高(动画)
 fun View.animateWidth(toValue: Int, duration: Long, interpolator: Interpolator)
 fun View.animateWidthBy(toValue: Int, duration: Long, interpolator: Interpolator)
 fun View.animateHeight(toValue: Int, duration: Long, interpolator: Interpolator)
@@ -35,13 +40,7 @@ fun TextView.bold()
 ### CommonExt
 
 ```kotlin
-//屏幕尺寸、密度
-val screenWidth: Int
-val screenHeight: Int
-val screenDensity: Float
-val scaledDensity: Float
-
-//使用ContextCompat
+//内部使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
 fun findDrawable(@DrawableRes resId: Int)
 fun findColorStateList(@ColorRes resId: Int)
@@ -49,13 +48,25 @@ fun findColorStateList(@ColorRes resId: Int)
 fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false)
 fun inflate(@LayoutRes layoutId: Int)
 
-fun dp2px(dp: Number)
-fun sp2px(sp: Number)
-
 //跳转到拨号界面
 fun Context.dial(tel: String?)
 //跳转到短信界面
 fun Context.sms(phone: String?, body: String = "")
+```
+
+### DisplayExt
+
+```kotlin
+//屏幕尺寸、密度
+val screenWidth: Int
+val screenHeight: Int
+val screenDensity: Float
+val scaledDensity: Float
+
+fun dp2px(dp: Number)
+fun sp2px(sp: Number)
+fun px2dp(px: Number)
+fun px2sp(px: Number)
 ```
 
 ### DateTimeExt
@@ -86,30 +97,38 @@ fun Int.isLeapYear()
 fun String.toast()
 fun String.md5()
 fun String.sha1()
+//是否是身份证
+fun String.isIdcard()
+//是否是手机号
+fun String.isPhone()
+//是否是邮箱
+fun String.isEmail()
+//不考虑大小写比较
+fun String.equalsIgnoreCase(other: String)
 ```
 
 ### ListenerExt
 
 ```kotlin
-Animator.addListener {
+fun Animator.addListener {
     onStart { }
     onCancel { }
     onEnd { }
     onRepeat { }
 }
 
-Animator.addPauseListener {
+fun Animator.addPauseListener {
     onPause { }
     onResume { }
 }
 
-EditText.addTextChangedListener {
+fun EditText.addTextChangedListener {
     before { s, start, count, after ->  }
     on { s, start, before, count ->  }
     after { }
 }
 
-ViewPager.addOnPageChangeListener {
+fun ViewPager.addOnPageChangeListener {
     onPageScrollStateChanged {  }
     onPageSelected { }
     onPageScrolled { position, positionOffset, positionOffsetPixels ->  }
@@ -120,12 +139,17 @@ ViewPager.addOnPageChangeListener {
 
 ```kotlin
 //直接调用
-connectivityManager
-alarmManager
-telephonyManager
-activityManager
-notificationManager
-inputMethodManager
+val connectivityManager
+val alarmManager
+val telephonyManager
+val activityManager
+val notificationManager
+val appWidgetManager
+val inputMethodManager
+val clipboardManager
+val bluetoothManager
+val audioManager
+val batteryManager
 ```
 
 ### SharedPreferencesExt
