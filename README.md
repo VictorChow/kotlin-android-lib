@@ -26,15 +26,30 @@ fun View.animateWidthBy(toValue: Int, duration: Long, interpolator: Interpolator
 fun View.animateHeight(toValue: Int, duration: Long, interpolator: Interpolator)
 fun View.animateHeightBy(toValue: Int, duration: Long, interpolator: Interpolator)
 
-//获取ViewGroup子View
+//移动
+fun View.animateX(toValue: Int, duration: Long, interpolator: Interpolator)
+fun View.animateXBy(toValue: Int, duration: Long, interpolator: Interpolator)
+fun View.animateY(toValue: Int, duration: Long, interpolator: Interpolator)
+fun View.animateYBy(toValue: Int, duration: Long, interpolator: Interpolator)
+
+//ViewGroup子View
 val ViewGroup.children: List<View>
 
-//TextView下划线
+//下划线
 fun TextView.underLine()
-//TextView中划线
+//中划线
 fun TextView.deleteLine()
-//TextView加粗
+//加粗
 fun TextView.bold()
+
+//点击
+fun View.click(block: (View) -> Unit)
+fun View.longClick(block: (View) -> Boolean)
+
+//显示
+fun View.visiable()
+fun View.invisiable()
+fun View.gone()
 ```
 
 ### CommonExt
@@ -81,9 +96,9 @@ fun Long.hour()
 fun Long.minute()
 fun Long.second()
 fun Long.week()
-//获取是一年第几天
+//一年第几天
 fun Long.dayOfYear()
-//获取是一年第几周
+//一年第几周
 fun Long.weekOfYear()
 //获取星座
 fun Long.constellation()
@@ -174,7 +189,7 @@ fun spClearAll()
 ```kotlin
 //改变字符串中个别字体大小
 fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: Int)
-//改变字符串中个别字体加粗
+//字符串中个别字体加粗
 fun spannableBold(text: String, start: Int, end: Int)
 //改变字符串中个别字体颜色
 fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int)

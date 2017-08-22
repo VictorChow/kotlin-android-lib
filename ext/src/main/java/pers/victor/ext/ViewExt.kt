@@ -12,6 +12,9 @@ import android.widget.TextView
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
+private val DURATION = 750L
+private val INTERPOLATOR = AccelerateDecelerateInterpolator()
+
 fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
 
 fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value, paddingBottom)
@@ -30,7 +33,7 @@ fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value
 
 fun View.setHeight(value: Int) {
     val lp = layoutParams
-    if (lp != null) {
+    lp?.let {
         lp.height = value
         layoutParams = lp
     }
@@ -38,7 +41,7 @@ fun View.setHeight(value: Int) {
 
 fun View.setWidth(value: Int) {
     val lp = layoutParams
-    if (lp != null) {
+    lp?.let {
         lp.width = value
         layoutParams = lp
     }
@@ -46,7 +49,7 @@ fun View.setWidth(value: Int) {
 
 fun View.resize(width: Int, height: Int) {
     val lp = layoutParams
-    if (lp != null) {
+    lp?.let {
         lp.width = width
         lp.height = height
         layoutParams = lp
@@ -56,46 +59,44 @@ fun View.resize(width: Int, height: Int) {
 val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
 
-fun View.animateWidth(toValue: Int, duration: Long = 1000, interpolator: Interpolator = AccelerateDecelerateInterpolator()) {
-    if (toValue == width) {
-        return
+fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == width || layoutParams == null) {
+        return AnimatePropsWrapper(null)
     }
-    ValueAnimator().apply {
+    return AnimatePropsWrapper(ValueAnimator().apply {
         setIntValues(width, toValue)
         setDuration(duration)
         setInterpolator(interpolator)
         addUpdateListener {
             val lp = layoutParams
-            if (lp != null) {
-                lp.width = it.animatedValue as Int
-                layoutParams = lp
-            }
+            lp.width = it.animatedValue as Int
+            layoutParams = lp
         }
-    }.start()
+        start()
+    })
 }
 
-fun View.animateWidthBy(byValue: Int, duration: Long = 1000, interpolator: Interpolator = AccelerateDecelerateInterpolator())
+fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateWidth(width + byValue, duration, interpolator)
 
-fun View.animateHeight(toValue: Int, duration: Long = 1000, interpolator: Interpolator = AccelerateDecelerateInterpolator()) {
-    if (toValue == height) {
-        return
+fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == height || layoutParams == null) {
+        return AnimatePropsWrapper(null)
     }
-    ValueAnimator().apply {
+    return AnimatePropsWrapper(ValueAnimator().apply {
         setIntValues(height, toValue)
         setDuration(duration)
         setInterpolator(interpolator)
         addUpdateListener {
             val lp = layoutParams
-            if (lp != null) {
-                lp.height = it.animatedValue as Int
-                layoutParams = lp
-            }
+            lp.height = it.animatedValue as Int
+            layoutParams = lp
         }
-    }.start()
+        start()
+    })
 }
 
-fun View.animateHeightBy(byValue: Int, duration: Long = 1000, interpolator: Interpolator = AccelerateDecelerateInterpolator())
+fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateHeight(height + byValue, duration, interpolator)
 
 fun TextView.underLine() {
@@ -113,4 +114,56 @@ fun TextView.bold() {
     paint.isAntiAlias = true
 }
 
+fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
 
+fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it) }
+
+fun View.visiable() {
+    if (visibility != View.VISIBLE) {
+        visibility = View.VISIBLE
+    }
+}
+
+fun View.invisiable() {
+    if (visibility != View.INVISIBLE) {
+        visibility = View.INVISIBLE
+    }
+}
+
+fun View.gone() {
+    if (visibility != View.GONE) {
+        visibility = View.GONE
+    }
+}
+
+fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == translationX) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setFloatValues(translationX, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener { this@animateX.translationX = it.animatedValue as Float }
+        start()
+    })
+}
+
+fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateX(translationX + toValue, duration, interpolator)
+
+fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == translationY) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setFloatValues(translationY, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener { this@animateY.translationY = it.animatedValue as Float }
+        start()
+    })
+}
+
+fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateY(translationY + toValue, duration, interpolator)

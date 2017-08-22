@@ -1,5 +1,6 @@
 package pers.victor.ext
 
+import android.animation.Animator
 import android.text.Editable
 
 /**
@@ -75,5 +76,16 @@ class OnPageChangeListenerWrapper {
 
     fun onPageScrollStateChanged(block: (Int) -> Unit) {
         onPageScrollStateChanged = block
+    }
+}
+
+class AnimatePropsWrapper(private val animator: Animator?) {
+
+    fun onEnd(block: () -> Unit) {
+        if (animator == null) {
+            block()
+        } else {
+            animator.addListener { onEnd { block() } }
+        }
     }
 }
