@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Looper
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
@@ -34,3 +35,5 @@ fun Context.sms(phone: String?, body: String = "") {
     intent.putExtra("sms_body", body)
     startActivity(intent)
 }
+
+fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()

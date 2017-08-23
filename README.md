@@ -41,6 +41,8 @@ fun TextView.underLine()
 fun TextView.deleteLine()
 //加粗
 fun TextView.bold()
+//EditText.text.toString()
+val EditText.value
 
 //点击
 fun View.click(block: (View) -> Unit)
@@ -50,6 +52,9 @@ fun View.longClick(block: (View) -> Boolean)
 fun View.visiable()
 fun View.invisiable()
 fun View.gone()
+fun View.visiableIf(block: () -> Boolean) 
+fun View.invisiableIf(block: () -> Boolean) 
+fun View.goneIf(block: () -> Boolean) 
 ```
 
 ### CommonExt
@@ -67,6 +72,8 @@ fun inflate(@LayoutRes layoutId: Int)
 fun Context.dial(tel: String?)
 //跳转到短信界面
 fun Context.sms(phone: String?, body: String = "")
+//是否在主线程
+fun isMainThread(): Boolean
 ```
 
 ### DisplayExt
@@ -199,6 +206,14 @@ fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int)
 
 ```kotlin
 fun toast(msg: Any, isShortToast: Boolean = true) 
+```
+
+### ApiExt
+
+```kotlin
+// aboveApi(20) { view.elevation = 10f }
+fun aboveApi(api: Int, included: Boolean = false, block: () -> Unit)
+fun belowApi(api: Int, included: Boolean = false, block: () -> Unit)
 ```
 
 

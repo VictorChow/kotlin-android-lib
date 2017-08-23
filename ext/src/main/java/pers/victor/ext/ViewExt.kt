@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
+import android.widget.EditText
 import android.widget.TextView
 
 /**
@@ -124,14 +125,32 @@ fun View.visiable() {
     }
 }
 
+inline fun View.visiableIf(block: () -> Boolean) {
+    if (visibility != View.VISIBLE && block()) {
+        visibility = View.VISIBLE
+    }
+}
+
 fun View.invisiable() {
     if (visibility != View.INVISIBLE) {
         visibility = View.INVISIBLE
     }
 }
 
+inline fun View.invisiableIf(block: () -> Boolean) {
+    if (visibility != View.INVISIBLE && block()) {
+        visibility = View.INVISIBLE
+    }
+}
+
 fun View.gone() {
     if (visibility != View.GONE) {
+        visibility = View.GONE
+    }
+}
+
+inline fun View.goneIf(block: () -> Boolean) {
+    if (visibility != View.GONE && block()) {
         visibility = View.GONE
     }
 }
@@ -167,3 +186,6 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
 
 fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateY(translationY + toValue, duration, interpolator)
+
+val EditText.value
+    get() = text.toString()
