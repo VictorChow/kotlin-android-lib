@@ -55,6 +55,9 @@ fun View.gone()
 fun View.visiableIf(block: () -> Boolean) 
 fun View.invisiableIf(block: () -> Boolean) 
 fun View.goneIf(block: () -> Boolean) 
+
+//获取view的bitmap
+fun View.getBitmap(): Bitmap
 ```
 
 ### CommonExt
@@ -73,7 +76,7 @@ fun Context.dial(tel: String?)
 //跳转到短信界面
 fun Context.sms(phone: String?, body: String = "")
 //是否在主线程
-fun isMainThread(): Boolean
+fun isMainThread()
 ```
 
 ### DisplayExt
@@ -119,12 +122,15 @@ fun Int.isLeapYear()
 fun String.toast()
 fun String.md5()
 fun String.sha1()
+
 //是否是身份证
 fun String.isIdcard()
 //是否是手机号
 fun String.isPhone()
 //是否是邮箱
 fun String.isEmail()
+//是否是纯数字
+fun String.isNumeric()
 //不考虑大小写比较
 fun String.equalsIgnoreCase(other: String)
 ```
@@ -189,6 +195,17 @@ fun spSetString(key: String, value: String)
 fun spGetString(key: String, defaultValue: String = "")
 fun spRemove(key: String)
 fun spClearAll()
+```
+
+### BitmapExt
+
+```kotlin
+//bitmap转base64
+fun Bitmap.toBase64(): String
+//bitmap调整大小
+fun Bitmap.resize(w: Number, h: Number): Bitmap
+//保存bitmap到文件
+fun Bitmap.saveFile(path: String) 
 ```
 
 ### SpannableExt

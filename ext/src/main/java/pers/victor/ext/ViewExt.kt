@@ -1,6 +1,8 @@
 package pers.victor.ext
 
 import android.animation.ValueAnimator
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import android.widget.EditText
 import android.widget.TextView
+
 
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
@@ -189,3 +192,11 @@ fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Int
 
 val EditText.value
     get() = text.toString()
+
+fun View.getBitmap(): Bitmap {
+    val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bmp)
+    draw(canvas)
+    canvas.save()
+    return bmp
+}

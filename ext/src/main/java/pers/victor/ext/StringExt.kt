@@ -30,6 +30,11 @@ fun String.isEmail(): Boolean {
     return matches(p)
 }
 
+fun String.isNumeric(): Boolean {
+    val p = "^[0-9]+$".toRegex()
+    return matches(p)
+}
+
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 
 private fun encrypt(string: String?, type: String): String {
