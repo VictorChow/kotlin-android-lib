@@ -261,7 +261,7 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-   compile('com.github.VictorChow:KotlinAndroidLib:0.1.1') {
+   compile('com.github.VictorChow:KotlinAndroidLib:0.2.1') {
         transitive = false
     }
 }
