@@ -44,9 +44,9 @@ fun TextView.bold()
 //EditText.text.toString()
 val EditText.value
 
-//点击
-fun View.click(block: (View) -> Unit)
-fun View.longClick(block: (View) -> Boolean)
+//点击, 调用时lambda里的it为具体View类型
+fun <T : View> T.click(block: (T) -> Unit) 
+fun <T : View> T.longClick(block: (T) -> Boolean)
 
 //显示
 fun View.visiable()

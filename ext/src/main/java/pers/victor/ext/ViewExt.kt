@@ -118,9 +118,9 @@ fun TextView.bold() {
     paint.isAntiAlias = true
 }
 
-fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
+fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T) }
 
-fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it) }
+fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { block(it as T) }
 
 fun View.visiable() {
     if (visibility != View.VISIBLE) {
@@ -180,7 +180,7 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
     }
     return AnimatePropsWrapper(ValueAnimator().apply {
         setFloatValues(translationY, toValue)
-        setDuration(duration)
+                setDuration(duration)
         setInterpolator(interpolator)
         addUpdateListener { this@animateY.translationY = it.animatedValue as Float }
         start()
