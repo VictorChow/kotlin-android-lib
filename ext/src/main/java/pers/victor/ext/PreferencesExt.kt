@@ -1,12 +1,14 @@
 package pers.victor.ext
 
+import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
-private val sp = PreferenceManager.getDefaultSharedPreferences(Ext.ctx)
+private inline val sp: SharedPreferences
+    get() = PreferenceManager.getDefaultSharedPreferences(app)
 
 fun spSetInt(key: String, value: Int) = sp.edit().putInt(key, value).apply()
 

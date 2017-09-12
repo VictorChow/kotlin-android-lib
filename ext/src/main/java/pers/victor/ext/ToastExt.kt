@@ -10,7 +10,7 @@ private var toast: Toast? = null
 
 fun toast(msg: Any, isShortToast: Boolean = true) {
     if (toast == null) {
-        toast = Toast.makeText(Ext.ctx, msg.toString(), Toast.LENGTH_SHORT)
+        toast = Toast.makeText(app, msg.toString(), Toast.LENGTH_SHORT)
     } else {
         toast!!.setText(msg.toString())
     }

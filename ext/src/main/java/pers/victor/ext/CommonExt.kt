@@ -21,13 +21,13 @@ import android.view.ViewGroup
 inline val app: Application
     get() = Ext.ctx
 
-fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
+fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(app, resId)
 
-fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(Ext.ctx, resId)
+fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(app, resId)
 
-fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(Ext.ctx, resId)
+fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(app, resId)
 
-fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(Ext.ctx).inflate(layoutId, parent, attachToRoot)!!
+fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(app).inflate(layoutId, parent, attachToRoot)!!
 
 fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
 
