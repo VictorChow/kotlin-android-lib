@@ -1,5 +1,6 @@
 package pers.victor.ext
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -16,6 +17,9 @@ import android.view.ViewGroup
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
+
+inline val app: Application
+    get() = Ext.ctx
 
 fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
 

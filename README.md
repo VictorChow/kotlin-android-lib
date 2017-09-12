@@ -63,6 +63,9 @@ fun View.getBitmap(): Bitmap
 ### CommonExt
 
 ```kotlin
+//Application
+val app: Application
+
 //内部使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
 fun findDrawable(@DrawableRes resId: Int)
@@ -261,8 +264,6 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-   compile('com.github.VictorChow:KotlinAndroidLib:0.2.1') {
-        transitive = false
-    }
+   compile 'com.github.VictorChow:KotlinAndroidLib:0.2.1'
 }
 ```
