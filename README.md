@@ -228,6 +228,54 @@ fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int)
 fun toast(msg: Any, isShortToast: Boolean = true) 
 ```
 
+### ActivityExt
+
+```kotlin
+fun Activity.goActivity<T>()
+fun Activity.goActivity<T>(requestCode: Int)
+
+fun Activity.goService<T>()
+fun Activity.goService<T>(sc: ServiceConnection, flags: Int)
+
+fun Activity.hideInputMethod()
+fun Activity.showInputMethod(v: EditText)
+
+fun AppCompatActivity.addFragments(fragments: List<Fragment>, containerId: Int)
+fun AppCompatActivity.showFragment(fragment: Fragment)
+fun AppCompatActivity.hideFragment(fragment: Fragment)
+```
+
+### FragmentExt (support.v4)
+
+```kotlin
+fun Fragment.goActivity<T>()
+fun Fragment.goActivity<T>(requestCode: Int)
+
+fun Fragment.goService<T>()
+fun Fragment.goService<T>(sc: ServiceConnection, flags: Int)
+
+fun Fragment.hideInputMethod()
+fun Fragment.showInputMethod(v: EditText)
+```
+
+### ActivityMgr
+
+```kotlin
+//建议放在BaseActivity里，onCreate()里add，onDestroy()里remove
+fun add(activity: Activity)
+fun remove(activity: Activity)
+fun removeAll()
+fun current(): Activity?
+fun findFirst(clazz: KClass<T>): T?
+fun findLast(clazz: KClass<T>): T?
+fun find(clazz: KClass<T>): List<T>
+fun finishFirst(clazz: KClass<*>)
+fun finishLast(clazz: KClass<*>)
+fun finish(clazz: KClass<*>)
+fun finishExcept(vararg clazz: KClass<*>)
+fun finishAll()
+```
+
 ### ApiExt
 
 ```kotlin
@@ -264,6 +312,6 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-   compile 'com.github.VictorChow:KotlinAndroidLib:0.2.1'
+    compile 'com.github.VictorChow:KotlinAndroidLib:0.2.1'
 }
 ```

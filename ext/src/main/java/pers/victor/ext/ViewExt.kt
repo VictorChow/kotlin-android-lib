@@ -17,7 +17,8 @@ import android.widget.TextView
  */
 
 private val DURATION = 750L
-private val INTERPOLATOR = AccelerateDecelerateInterpolator()
+private inline val INTERPOLATOR: Interpolator
+    get() = AccelerateDecelerateInterpolator()
 
 fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
 
@@ -180,7 +181,7 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
     }
     return AnimatePropsWrapper(ValueAnimator().apply {
         setFloatValues(translationY, toValue)
-                setDuration(duration)
+        setDuration(duration)
         setInterpolator(interpolator)
         addUpdateListener { this@animateY.translationY = it.animatedValue as Float }
         start()

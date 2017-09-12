@@ -5,21 +5,21 @@ package pers.victor.ext
  */
 
 val screenWidth: Int
-    get() = Ext.ctx.resources.displayMetrics.widthPixels
+    get() = app.resources.displayMetrics.widthPixels
 
 val screenHeight: Int
-    get() = Ext.ctx.resources.displayMetrics.heightPixels
+    get() = app.resources.displayMetrics.heightPixels
 
 val screenDensity: Float
-    get() = Ext.ctx.resources.displayMetrics.density
+    get() = app.resources.displayMetrics.density
 
 val scaledDensity: Float
-    get() = Ext.ctx.resources.displayMetrics.scaledDensity
+    get() = app.resources.displayMetrics.scaledDensity
 
-fun dp2px(dp: Number) = (dp.toFloat() * Ext.ctx.resources.displayMetrics.density + 0.5f).toInt()
+fun dp2px(dp: Number) = (dp.toFloat() * app.resources.displayMetrics.density + 0.5f).toInt()
 
-fun sp2px(sp: Number) = (sp.toFloat() * Ext.ctx.resources.displayMetrics.scaledDensity + 0.5f).toInt()
+fun sp2px(sp: Number) = (sp.toFloat() * app.resources.displayMetrics.scaledDensity + 0.5f).toInt()
 
-fun px2dp(px: Number) = (px.toFloat() / Ext.ctx.resources.displayMetrics.density + 0.5f).toInt()
+fun px2dp(px: Number) = (px.toFloat() / app.resources.displayMetrics.density + 0.5f).toInt()
 
-fun px2sp(px: Number) = (px.toFloat() / Ext.ctx.resources.displayMetrics.scaledDensity + 0.5f).toInt()
+fun px2sp(px: Number) = (px.toFloat() / app.resources.displayMetrics.scaledDensity + 0.5f).toInt()

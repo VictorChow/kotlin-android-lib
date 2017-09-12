@@ -11,7 +11,6 @@ import android.widget.TextView
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
-
 fun Animator.addListener(init: AnimatorListenerWrapper.() -> Unit) {
     val wrapper = AnimatorListenerWrapper().apply { init() }
     addListener(object : Animator.AnimatorListener {
