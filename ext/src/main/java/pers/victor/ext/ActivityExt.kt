@@ -5,8 +5,11 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
 /**
@@ -23,7 +26,19 @@ inline fun <reified T : Service> Activity.goService(sc: ServiceConnection, flags
 
 fun Activity.hideInputMethod() = window.peekDecorView()?.let { inputMethodManager.hideSoftInputFromWindow(window.peekDecorView().windowToken, 0) }
 
-fun Activity.showInputMethod(v: EditText) = inputMethodManager.showSoftInput(v, 0)
+fun Activity.showInputMethod(v: EditText) {
+    v.requestFocus()
+    inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_FORCED)
+}
+
+fun Activity.clearWindowBackground() = window.setBackgroundDrawable(null)
+
+fun Activity.steepStatusBar() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+    }
+}
 
 fun AppCompatActivity.addFragments(fragments: List<Fragment>, containerId: Int) {
     fragments.forEach {

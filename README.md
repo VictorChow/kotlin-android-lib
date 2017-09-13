@@ -240,6 +240,10 @@ fun Activity.goService<T>(sc: ServiceConnection, flags: Int)
 fun Activity.hideInputMethod()
 fun Activity.showInputMethod(v: EditText)
 
+//清除window背景
+fun Activity.clearWindowBackground()
+fun Activity.steepStatusBar()
+
 fun AppCompatActivity.addFragments(fragments: List<Fragment>, containerId: Int)
 fun AppCompatActivity.showFragment(fragment: Fragment)
 fun AppCompatActivity.hideFragment(fragment: Fragment)
@@ -256,6 +260,9 @@ fun Fragment.goService<T>(sc: ServiceConnection, flags: Int)
 
 fun Fragment.hideInputMethod()
 fun Fragment.showInputMethod(v: EditText)
+
+//finish所在的Activity
+fun Fragment.finish()
 ```
 
 ### ActivityMgr
@@ -312,6 +319,6 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:KotlinAndroidLib:0.2.1'
+    compile 'com.github.VictorChow:KotlinAndroidLib:1.0.0'
 }
 ```
