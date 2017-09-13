@@ -319,6 +319,6 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:KotlinAndroidLib:0.2.1'
+    compile 'com.github.VictorChow:KotlinAndroidLib:1.0.0'
 }
 ```
