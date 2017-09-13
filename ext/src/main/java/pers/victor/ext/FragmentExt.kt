@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.support.v4.app.Fragment
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
 /**
@@ -18,7 +19,7 @@ inline fun <reified T : Activity> Fragment.goActivity(requestCode: Int) = activi
 
 inline fun <reified T : Service> Fragment.goService() = activity?.startService(Intent(activity, T::class.java))
 
-inline fun <reified T : Service> Fragment.goService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE) = activity.bindService(Intent(activity, T::class.java), sc, flags)
+inline fun <reified T : Service> Fragment.goService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE) = activity?.bindService(Intent(activity, T::class.java), sc, flags)
 
 fun Fragment.hideInputMethod() {
     if (activity != null && activity.window.peekDecorView() != null) {
@@ -26,4 +27,10 @@ fun Fragment.hideInputMethod() {
     }
 }
 
-fun Fragment.showInputMethod(v: EditText) = inputMethodManager.showSoftInput(v, 0)
+fun Fragment.showInputMethod(v: EditText) {
+    v.requestFocus()
+    inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_FORCED)
+}
+
+fun Fragment.finish() = activity?.finish()
+
