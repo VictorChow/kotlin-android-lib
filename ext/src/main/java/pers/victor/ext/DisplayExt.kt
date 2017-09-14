@@ -40,6 +40,7 @@ fun getStatusBarHeight(): Int {
 }
 
 fun getVirNavBarHeight(): Int {
+    var height: Int
     val wm = (app.getSystemService(Context.WINDOW_SERVICE) as WindowManager)
     val display = wm.defaultDisplay
     val p = Point()
@@ -49,5 +50,11 @@ fun getVirNavBarHeight(): Int {
     val c: Class<*> = Class.forName("android.view.Display")
     val method = c.getMethod("getRealMetrics", DisplayMetrics::class.java)
     method.invoke(display, dm)
-    return Math.max(dm.heightPixels, dm.widthPixels) - screenHeight
+    //横屏在右|竖屏在底
+    height = Math.max(dm.heightPixels, dm.widthPixels) - screenHeight
+    //横屏在底|竖屏在底
+    if (height == 0) {
+        height = Math.min(dm.heightPixels, dm.widthPixels) - Math.min(p.y, p.x)
+    }
+    return height
 }
