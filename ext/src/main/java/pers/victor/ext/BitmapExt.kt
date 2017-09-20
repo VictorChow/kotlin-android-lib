@@ -58,3 +58,9 @@ fun Bitmap.saveFile(path: String) {
     stream.flush()
     stream.close()
 }
+
+fun Bitmap.toBytes(): ByteArray {
+    val stream = ByteArrayOutputStream()
+    compress(Bitmap.CompressFormat.PNG, 100, stream)
+    return stream.toByteArray()
+}

@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager
 import android.bluetooth.BluetoothManager
 import android.content.ClipboardManager
 import android.content.Context
+import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.os.BatteryManager
@@ -54,3 +55,7 @@ inline val audioManager
 inline val batteryManager
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = app.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+
+inline val cameraManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    get() = app.getSystemService(Context.CAMERA_SERVICE) as CameraManager
