@@ -41,8 +41,15 @@ fun TextView.underLine()
 fun TextView.deleteLine()
 //加粗
 fun TextView.bold()
-//EditText.text.toString()
-val EditText.value
+
+//setText getText
+var EditText.value: String
+//所有字母大写
+fun EditText.uppercase()
+//所有字母小写
+fun EditText.lowercase()
+//显示、隐藏密码
+fun EditText.passwordToggledVisible()
 
 //点击, 调用时lambda里的it为具体View类型
 fun <T : View> T.click(block: (T) -> Unit) 
@@ -63,8 +70,12 @@ fun View.getBitmap(): Bitmap
 ### CommonExt
 
 ```kotlin
-//Application
 val app: Application
+val currentTimeMillis: Long
+
+//三目运算符 yes no
+val s = bool yes "yes" no "no"
+val s = bool.yes("yes").no("no")
 
 //内部使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
@@ -109,6 +120,9 @@ fun Long.hour()
 fun Long.minute()
 fun Long.second()
 fun Long.week()
+fun Long.dateOnly(split: String)
+fun Long.timeOnly(split: String)
+
 //一年第几天
 fun Long.dayOfYear()
 //一年第几周
@@ -181,6 +195,7 @@ val clipboardManager
 val bluetoothManager
 val audioManager
 val batteryManager
+val cameraManager
 ```
 
 ### SharedPreferencesExt
@@ -208,7 +223,9 @@ fun Bitmap.toBase64(): String
 //bitmap调整大小
 fun Bitmap.resize(w: Number, h: Number): Bitmap
 //保存bitmap到文件
-fun Bitmap.saveFile(path: String) 
+fun Bitmap.saveFile(path: String)
+//bitmap转byte[]
+fun Bitmap.toBytes()
 ```
 
 ### SpannableExt
@@ -268,7 +285,7 @@ fun Fragment.finish()
 ### ActivityMgr
 
 ```kotlin
-//建议放在BaseActivity里，onCreate()里add，onDestroy()里remove
+//建议放在BaseActivity里，onCreate()里ActivityMgr.add，onDestroy()里ActivityMgr.remove
 fun add(activity: Activity)
 fun remove(activity: Activity)
 fun removeAll()

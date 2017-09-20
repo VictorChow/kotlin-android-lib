@@ -36,6 +36,10 @@ fun Long.weekOfYear() = getData(this, DateExpr.WEEK_YEAR)
 
 fun Long.constellation() = getData(this, DateExpr.CONSTELLATION)
 
+fun Long.dateOnly(split: String = "-") = "${year()}$split${month()}$split${day()}"
+
+fun Long.timeOnly(split: String = ":") = "${hour()}$split${minute()}$split${second()}"
+
 fun Int.isLeapYear() = (this % 4 == 0) && (this % 100 != 0) || (this % 400 == 0)
 
 private fun getData(timeMillis: Long, expr: DateExpr): String {
@@ -43,15 +47,15 @@ private fun getData(timeMillis: Long, expr: DateExpr): String {
     cal.time = Date(timeMillis)
     return when (expr) {
         DateExpr.YEAR -> cal[Calendar.YEAR].toString()
-        DateExpr.MONTH -> (cal[Calendar.MONTH] + 1).toString()
-        DateExpr.DAY -> cal[Calendar.DAY_OF_MONTH].toString()
+        DateExpr.MONTH -> (cal[Calendar.MONTH] + 1).toString().prefix0()
+        DateExpr.DAY -> cal[Calendar.DAY_OF_MONTH].toString().prefix0()
         DateExpr.WEEK -> {
             val week = arrayOf("未知", "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
             week[cal.get(Calendar.DAY_OF_WEEK)]
         }
-        DateExpr.HOUR -> cal[Calendar.HOUR_OF_DAY].toString()
-        DateExpr.MINUTE -> cal[Calendar.MINUTE].toString()
-        DateExpr.SECOND -> cal[Calendar.SECOND].toString()
+        DateExpr.HOUR -> cal[Calendar.HOUR_OF_DAY].toString().prefix0()
+        DateExpr.MINUTE -> cal[Calendar.MINUTE].toString().prefix0()
+        DateExpr.SECOND -> cal[Calendar.SECOND].toString().prefix0()
         DateExpr.DAY_YEAR -> cal[Calendar.DAY_OF_YEAR].toString()
         DateExpr.WEEK_YEAR -> cal[Calendar.WEEK_OF_YEAR].toString()
         DateExpr.CONSTELLATION -> getConstellations(timeMillis.month().toInt(), timeMillis.day().toInt())
@@ -65,3 +69,5 @@ private fun getConstellations(month: Int, day: Int): String {
     val constellation = constellations[month - 1]
     return if (day >= split) constellation[1] else constellation[0]
 }
+
+private fun String.prefix0() = if (length == 1) "0$this" else this

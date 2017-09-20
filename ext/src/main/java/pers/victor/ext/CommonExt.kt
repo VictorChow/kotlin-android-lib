@@ -21,6 +21,9 @@ import android.view.ViewGroup
 inline val app: Application
     get() = Ext.ctx
 
+inline val currentTimeMillis: Long
+    get() = System.currentTimeMillis()
+
 fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(app, resId)
 
 fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(app, resId)
@@ -38,6 +41,14 @@ fun Context.sms(phone: String?, body: String = "") {
     val intent = Intent(Intent.ACTION_SENDTO, smsToUri)
     intent.putExtra("sms_body", body)
     startActivity(intent)
+
 }
 
 fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
+
+
+infix fun <T> Boolean.yes(trueValue: T) = TernaryOperator(trueValue, this)
+
+class TernaryOperator<out T>(val trueValue: T, val bool: Boolean)
+
+infix fun <T> TernaryOperator<T>.no(falseValue: T) = if (bool) trueValue else falseValue

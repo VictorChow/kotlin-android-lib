@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.text.method.PasswordTransformationMethod
+import android.text.method.ReplacementTransformationMethod
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -191,8 +193,9 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
 fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateY(translationY + toValue, duration, interpolator)
 
-val EditText.value
+var EditText.value: String
     get() = text.toString()
+    set(value) = setText(value)
 
 fun View.getBitmap(): Bitmap {
     val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -200,4 +203,32 @@ fun View.getBitmap(): Bitmap {
     draw(canvas)
     canvas.save()
     return bmp
+}
+
+fun EditText.uppercase() {
+    transformationMethod = object : ReplacementTransformationMethod() {
+        private val lower = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+        private val upper = charArrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
+
+        override fun getOriginal() = lower
+
+        override fun getReplacement() = upper
+    }
+}
+
+fun EditText.lowercase() {
+    transformationMethod = object : ReplacementTransformationMethod() {
+        private val lower = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+        private val upper = charArrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
+
+        override fun getOriginal() = upper
+
+        override fun getReplacement() = lower
+    }
+}
+
+fun EditText.passwordToggledVisible() {
+    val selection = selectionStart
+    transformationMethod = if (transformationMethod == null) PasswordTransformationMethod() else null
+    setSelection(selection)
 }
