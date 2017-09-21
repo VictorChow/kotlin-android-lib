@@ -228,6 +228,21 @@ fun Bitmap.saveFile(path: String)
 fun Bitmap.toBytes()
 ```
 
+### FileExt
+
+```kotlin
+//复制文件
+fun File.copy(dest: File)
+//移动文件
+fun File.move(dest: File)
+//复制文件夹
+fun File.copyDirectory(dest: File)
+//移动文件夹
+fun File.moveDirectory(dest: File)
+//删除文件夹及其下所有文件
+fun File.deleteAll()
+```
+
 ### SpannableExt
 
 ```kotlin
