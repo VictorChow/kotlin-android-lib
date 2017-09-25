@@ -196,6 +196,7 @@ val bluetoothManager
 val audioManager
 val batteryManager
 val cameraManager
+val vibrator
 ```
 
 ### SharedPreferencesExt
