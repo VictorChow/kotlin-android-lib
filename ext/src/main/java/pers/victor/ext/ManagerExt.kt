@@ -12,6 +12,7 @@ import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.os.BatteryManager
 import android.os.Build
+import android.os.Vibrator
 import android.support.annotation.RequiresApi
 import android.telephony.TelephonyManager
 import android.view.inputmethod.InputMethodManager
@@ -59,3 +60,6 @@ inline val batteryManager
 inline val cameraManager
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = app.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
+inline val vibrator
+    get() = app.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
