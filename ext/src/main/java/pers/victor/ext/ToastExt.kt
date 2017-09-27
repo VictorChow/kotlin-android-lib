@@ -1,5 +1,6 @@
 package pers.victor.ext
 
+import android.annotation.SuppressLint
 import android.widget.Toast
 
 /**
@@ -8,12 +9,15 @@ import android.widget.Toast
 
 private var toast: Toast? = null
 
-fun toast(msg: Any, isShortToast: Boolean = true) {
-    if (toast == null) {
-        toast = Toast.makeText(app, msg.toString(), Toast.LENGTH_SHORT)
-    } else {
-        toast!!.setText(msg.toString())
+@SuppressLint("ShowToast")
+fun toast(msg: Any?, isShortToast: Boolean = true) {
+    msg?.let {
+        if (toast == null) {
+            toast = Toast.makeText(app, msg.toString(), Toast.LENGTH_SHORT)
+        } else {
+            toast!!.setText(msg.toString())
+        }
+        toast!!.duration = if (isShortToast) Toast.LENGTH_SHORT else Toast.LENGTH_LONG
+        toast!!.show()
     }
-    toast!!.duration = if (isShortToast) Toast.LENGTH_SHORT else Toast.LENGTH_LONG
-    toast!!.show()
 }
