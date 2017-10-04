@@ -232,3 +232,9 @@ fun EditText.passwordToggledVisible() {
     transformationMethod = if (transformationMethod == null) PasswordTransformationMethod() else null
     setSelection(selection)
 }
+
+fun View.isVisible() = visibility == View.VISIBLE
+
+fun View.isGone() = visibility == View.GONE
+
+fun View.isInvisible() = visibility == View.INVISIBLE

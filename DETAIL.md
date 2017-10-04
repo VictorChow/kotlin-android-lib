@@ -83,6 +83,11 @@ fun <T : View> T.longClick(block: (T) -> Boolean)
 fun View.visiable()
 fun View.invisiable()
 fun View.gone()
+
+fun View.isVisible(): Boolean
+fun View.isInvisible(): Boolean
+fun View.isGone(): Boolean
+
 fun View.visiableIf(block: () -> Boolean) 
 fun View.invisiableIf(block: () -> Boolean) 
 fun View.goneIf(block: () -> Boolean) 
@@ -98,8 +103,7 @@ val app: Application
 val currentTimeMillis: Long
 
 //三目运算符 yes no
-val s = bool yes "yes" no "no"
-val s = bool.yes("yes").no("no")
+val value = bool.yes { "true value" }.no { "false value" }
 
 //内部使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
@@ -266,17 +270,6 @@ fun File.copyDirectory(dest: File)
 fun File.moveDirectory(dest: File)
 //删除文件夹及其下所有文件
 fun File.deleteAll()
-```
-
-### SpannableExt
-
-```kotlin
-//改变字符串中个别字体大小
-fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: Int)
-//字符串中个别字体加粗
-fun spannableBold(text: String, start: Int, end: Int)
-//改变字符串中个别字体颜色
-fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int)
 ```
 
 ### ToastExt
