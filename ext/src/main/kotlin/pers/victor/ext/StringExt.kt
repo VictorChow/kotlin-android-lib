@@ -1,7 +1,6 @@
 package pers.victor.ext
 
 import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 
 /**
@@ -38,20 +37,11 @@ fun String.isNumeric(): Boolean {
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 
 private fun encrypt(string: String?, type: String): String {
-    if (string.isNullOrEmpty()) {
-        return ""
-    }
-    val md5: MessageDigest
-    return try {
-        md5 = MessageDigest.getInstance(type)
-        val bytes = md5.digest(string!!.toByteArray())
-        bytes2Hex(bytes)
-    } catch (e: NoSuchAlgorithmException) {
-        ""
-    }
+    val bytes = MessageDigest.getInstance(type).digest(string!!.toByteArray())
+    return bytes2Hex(bytes)
 }
 
-private fun bytes2Hex(bts: ByteArray): String {
+internal fun bytes2Hex(bts: ByteArray): String {
     var des = ""
     var tmp: String
     for (i in bts.indices) {

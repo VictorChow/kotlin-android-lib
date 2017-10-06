@@ -50,4 +50,4 @@ fun <T> Boolean.yes(trueValue: () -> T) = TernaryOperator(trueValue, this)
 
 class TernaryOperator<out T>(val trueValue: () -> T, val bool: Boolean)
 
-fun <T> TernaryOperator<T>.no(falseValue: () -> T) = if (bool) trueValue() else falseValue()
+inline fun <T> TernaryOperator<T>.no(falseValue: () -> T) = if (bool) trueValue() else falseValue()

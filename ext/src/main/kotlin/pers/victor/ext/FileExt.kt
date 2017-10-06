@@ -3,6 +3,8 @@ package pers.victor.ext
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.security.MessageDigest
+
 
 /**
  * Created by Victor on 2017/9/21. (ง •̀_•́)ง
@@ -64,4 +66,31 @@ fun File.deleteAll() {
         files.forEach { it.deleteAll() }
         delete()
     }
+}
+
+fun File.md5(): String? {
+    if (!this.isFile) {
+        return null
+    }
+    return encryptFile(this, "MD5")
+}
+
+fun File.sha1(): String? {
+    if (!this.isFile) {
+        return null
+    }
+    return encryptFile(this, "SHA-1")
+}
+
+private fun encryptFile(file: File, type: String): String {
+    val digest: MessageDigest = MessageDigest.getInstance(type)
+    val input = FileInputStream(file)
+    val buffer = ByteArray(1024)
+    var len = input.read(buffer, 0, 1024)
+    while (len != -1) {
+        digest.update(buffer, 0, len)
+        len = input.read(buffer, 0, 1024)
+    }
+    input.close()
+    return bytes2Hex(digest.digest())
 }

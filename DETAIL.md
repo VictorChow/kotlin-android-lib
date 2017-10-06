@@ -270,6 +270,9 @@ fun File.copyDirectory(dest: File)
 fun File.moveDirectory(dest: File)
 //删除文件夹及其下所有文件
 fun File.deleteAll()
+
+fun File.md5()
+fun File.sha1()
 ```
 
 ### ToastExt
