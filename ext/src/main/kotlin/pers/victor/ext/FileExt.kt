@@ -3,6 +3,7 @@ package pers.victor.ext
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.nio.channels.FileChannel
 import java.security.MessageDigest
 
 
@@ -11,18 +12,27 @@ import java.security.MessageDigest
  */
 
 fun File.copy(dest: File) {
-    if (!dest.exists()) {
-        dest.createNewFile()
+    var fi: FileInputStream? = null
+    var fo: FileOutputStream? = null
+    var ic: FileChannel? = null
+    var oc: FileChannel? = null
+    try {
+        if (!dest.exists()) {
+            dest.createNewFile()
+        }
+        fi = FileInputStream(this)
+        fo = FileOutputStream(dest)
+        ic = fi.channel
+        oc = fo.channel
+        ic.transferTo(0, ic.size(), oc)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    } finally {
+        fi?.close()
+        fo?.close()
+        ic?.close()
+        oc?.close()
     }
-    val fi = FileInputStream(this)
-    val fo = FileOutputStream(dest)
-    val ic = fi.channel
-    val oc = fo.channel
-    ic.transferTo(0, ic.size(), oc)
-    fi.close()
-    fo.close()
-    ic.close()
-    oc.close()
 }
 
 fun File.move(dest: File) {
