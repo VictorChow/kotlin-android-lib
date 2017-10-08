@@ -22,7 +22,7 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.1.1'
+    compile 'com.github.VictorChow:kotlin-android-lib:1.2.0'
 }
 ```
 
