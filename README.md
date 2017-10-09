@@ -1,4 +1,4 @@
-# KotlinAndroidLib [![](https://jitpack.io/v/VictorChow/KotlinAndroidLib.svg)](https://jitpack.io/#VictorChow/KotlinAndroidLib)
+# KotlinAndroidLib [![](https://jitpack.io/v/VictorChow/kotlin-android-lib.svg)](https://jitpack.io/#VictorChow/kotlin-android-lib)
 
 一些Android开发的扩展。
 
