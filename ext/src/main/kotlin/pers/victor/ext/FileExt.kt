@@ -1,5 +1,6 @@
 package pers.victor.ext
 
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -103,4 +104,19 @@ private fun encryptFile(file: File, type: String): String {
     }
     input.close()
     return bytes2Hex(digest.digest())
+}
+
+fun File.toByteArray(): ByteArray {
+    val bos = ByteArrayOutputStream(this.length().toInt())
+    val input = FileInputStream(this)
+    val size = 1024
+    val buffer = ByteArray(size)
+    var len = input.read(buffer, 0, size)
+    while (len != -1) {
+        bos.write(buffer, 0, len)
+        len = input.read(buffer, 0, size)
+    }
+    input.close()
+    bos.close()
+    return bos.toByteArray()
 }
