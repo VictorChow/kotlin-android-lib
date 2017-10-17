@@ -1,29 +1,8 @@
-## Usage
+### Usage
 
 ```kotlin
 //初始化
 Ext.with(application)
-```
-
-## Gradle
-
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-```groovy
-//依赖项
-//org.jetbrains.kotlin:kotlin-stdlib-jre
-//com.android.support:appcompat-v7
-
-dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.2.0'
-}
 ```
 
 ### ViewExt
