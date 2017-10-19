@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 
@@ -231,4 +232,8 @@ fun EditText.passwordToggledVisible() {
     val selection = selectionStart
     transformationMethod = if (transformationMethod == null) PasswordTransformationMethod() else null
     setSelection(selection)
+}
+
+fun CheckBox.checkedChangeListener(block: (b: Boolean) -> Unit) {
+    setOnCheckedChangeListener { _, b -> block.invoke(b) }
 }
