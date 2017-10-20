@@ -6,32 +6,22 @@ import android.util.Base64
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 
 
 /**
  * Created by Victor on 2017/8/29. (ง •̀_•́)ง
  */
 
-fun Bitmap.toBase64(): String {
-    var result = ""
+fun Bitmap.toBase64(compressFormat: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG): String {
+    val result: String
     val baos = ByteArrayOutputStream()
-    try {
-        compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        baos.flush()
-        baos.close()
-        val bitmapBytes = baos.toByteArray()
-        result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT)
-    } catch (e: IOException) {
-        e.printStackTrace()
-    } finally {
-        try {
-            baos.flush()
-            baos.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
+    compress(compressFormat, 100, baos)
+    baos.flush()
+    baos.close()
+    val bitmapBytes = baos.toByteArray()
+    result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT)
+    baos.flush()
+    baos.close()
     return result
 }
 
@@ -48,19 +38,19 @@ fun Bitmap.resize(w: Number, h: Number): Bitmap {
     return this
 }
 
-fun Bitmap.saveFile(path: String) {
+fun Bitmap.saveFile(path: String, compressFormat: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG) {
     val f = File(path)
     if (!f.exists()) {
         f.createNewFile()
     }
     val stream = FileOutputStream(f)
-    compress(Bitmap.CompressFormat.PNG, 100, stream)
+    compress(compressFormat, 100, stream)
     stream.flush()
     stream.close()
 }
 
-fun Bitmap.toBytes(): ByteArray {
+fun Bitmap.toByteArray(compressFormat: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG): ByteArray {
     val stream = ByteArrayOutputStream()
-    compress(Bitmap.CompressFormat.PNG, 100, stream)
+    compress(compressFormat, 100, stream)
     return stream.toByteArray()
 }

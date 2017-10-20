@@ -19,8 +19,8 @@ import android.widget.TextView
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
-private val DURATION = 750L
-private inline val INTERPOLATOR: Interpolator
+private val duration = 750L
+private inline val interpolator: Interpolator
     get() = AccelerateDecelerateInterpolator()
 
 fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
@@ -64,10 +64,10 @@ fun View.resize(width: Int, height: Int) {
     }
 }
 
-val ViewGroup.children: List<View>
+inline val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
 
-fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+fun View.animateWidth(toValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == width || layoutParams == null) {
         return AnimatePropsWrapper(null)
     }
@@ -84,10 +84,10 @@ fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Int
     })
 }
 
-fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+fun View.animateWidthBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
         = animateWidth(width + byValue, duration, interpolator)
 
-fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+fun View.animateHeight(toValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == height || layoutParams == null) {
         return AnimatePropsWrapper(null)
     }
@@ -104,7 +104,7 @@ fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: In
     })
 }
 
-fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+fun View.animateHeightBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
         = animateHeight(height + byValue, duration, interpolator)
 
 fun TextView.underLine() {
@@ -162,7 +162,7 @@ inline fun View.goneIf(block: () -> Boolean) {
     }
 }
 
-fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+fun View.animateX(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == translationX) {
         return AnimatePropsWrapper(null)
     }
@@ -175,10 +175,10 @@ fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Inter
     })
 }
 
-fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+fun View.animateXBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
         = animateX(translationX + toValue, duration, interpolator)
 
-fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+fun View.animateY(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == translationY) {
         return AnimatePropsWrapper(null)
     }
@@ -191,7 +191,7 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
     })
 }
 
-fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+fun View.animateYBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
         = animateY(translationY + toValue, duration, interpolator)
 
 var EditText.value: String
@@ -237,3 +237,8 @@ fun EditText.passwordToggledVisible() {
 fun CheckBox.checkedChangeListener(block: (b: Boolean) -> Unit) {
     setOnCheckedChangeListener { _, b -> block.invoke(b) }
 }
+fun View.isVisible() = visibility == View.VISIBLE
+
+fun View.isGone() = visibility == View.GONE
+
+fun View.isInvisible() = visibility == View.INVISIBLE

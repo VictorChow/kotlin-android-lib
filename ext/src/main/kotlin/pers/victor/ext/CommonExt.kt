@@ -41,14 +41,20 @@ fun Context.sms(phone: String?, body: String = "") {
     val intent = Intent(Intent.ACTION_SENDTO, smsToUri)
     intent.putExtra("sms_body", body)
     startActivity(intent)
-
 }
 
 fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 
+fun isNetworkConnected(): Boolean {
+    val mNetworkInfo = connectivityManager.activeNetworkInfo
+    if (mNetworkInfo != null) {
+        return mNetworkInfo.isAvailable
+    }
+    return false
+}
 
-infix fun <T> Boolean.yes(trueValue: T) = TernaryOperator(trueValue, this)
+infix fun <T> Boolean.yes(trueValue: () -> T) = TernaryOperator(trueValue, this)
 
-class TernaryOperator<out T>(val trueValue: T, val bool: Boolean)
+class TernaryOperator<out T>(val trueValue: () -> T, val bool: Boolean)
 
-infix fun <T> TernaryOperator<T>.no(falseValue: T) = if (bool) trueValue else falseValue
+infix inline fun <T> TernaryOperator<T>.no(falseValue: () -> T) = if (bool) trueValue() else falseValue()

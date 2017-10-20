@@ -10,16 +10,16 @@ import android.view.WindowManager
  * Created by Victor on 2017/8/21. (ง •̀_•́)ง
  */
 
-val screenWidth: Int
+inline val screenWidth: Int
     get() = app.resources.displayMetrics.widthPixels
 
-val screenHeight: Int
+inline val screenHeight: Int
     get() = app.resources.displayMetrics.heightPixels
 
-val screenDensity: Float
+inline val screenDensity: Float
     get() = app.resources.displayMetrics.density
 
-val scaledDensity: Float
+inline val scaledDensity: Float
     get() = app.resources.displayMetrics.scaledDensity
 
 fun dp2px(dp: Number) = (dp.toFloat() * app.resources.displayMetrics.density + 0.5f).toInt()
