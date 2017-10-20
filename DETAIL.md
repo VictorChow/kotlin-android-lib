@@ -1,29 +1,8 @@
-## Usage
+### Usage
 
 ```kotlin
 //初始化
 Ext.with(application)
-```
-
-## Gradle
-
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-```groovy
-//依赖项
-//org.jetbrains.kotlin:kotlin-stdlib-jre
-//com.android.support:appcompat-v7
-
-dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.1.1'
-}
 ```
 
 ### ViewExt
@@ -83,6 +62,11 @@ fun <T : View> T.longClick(block: (T) -> Boolean)
 fun View.visiable()
 fun View.invisiable()
 fun View.gone()
+
+fun View.isVisible(): Boolean
+fun View.isInvisible(): Boolean
+fun View.isGone(): Boolean
+
 fun View.visiableIf(block: () -> Boolean) 
 fun View.invisiableIf(block: () -> Boolean) 
 fun View.goneIf(block: () -> Boolean) 
@@ -97,9 +81,9 @@ fun View.getBitmap(): Bitmap
 val app: Application
 val currentTimeMillis: Long
 
-//三目运算符 yes no
-val s = bool yes "yes" no "no"
-val s = bool.yes("yes").no("no")
+//强行三目运算符 yes no
+val value = bool.yes { "true value" }.no { "false value" }
+val value = bool yes { "true value" } no { "false value" }
 
 //内部使用ContextCompat
 fun findColor(@ColorRes resId: Int) 
@@ -112,9 +96,11 @@ fun inflate(@LayoutRes layoutId: Int)
 //跳转到拨号界面
 fun Context.dial(tel: String?)
 //跳转到短信界面
-fun Context.sms(phone: String?, body: String = "")
+fun Context.sms(phone: String?, body: String)
 //是否在主线程
 fun isMainThread()
+//是否连接网络
+fun isNetworkConnected(): Boolean
 ```
 
 ### DisplayExt
@@ -250,7 +236,7 @@ fun Bitmap.resize(w: Number, h: Number): Bitmap
 //保存bitmap到文件
 fun Bitmap.saveFile(path: String)
 //bitmap转byte[]
-fun Bitmap.toBytes()
+fun Bitmap.toByteArray(): ByteArray 
 ```
 
 ### FileExt
@@ -266,17 +252,12 @@ fun File.copyDirectory(dest: File)
 fun File.moveDirectory(dest: File)
 //删除文件夹及其下所有文件
 fun File.deleteAll()
-```
 
-### SpannableExt
+fun File.md5()
+fun File.sha1()
 
-```kotlin
-//改变字符串中个别字体大小
-fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: Int)
-//字符串中个别字体加粗
-fun spannableBold(text: String, start: Int, end: Int)
-//改变字符串中个别字体颜色
-fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int)
+//File转byte[]
+fun File.toByteArray(): ByteArray 
 ```
 
 ### ToastExt
@@ -320,6 +301,15 @@ fun Fragment.showInputMethod(v: EditText)
 
 //finish所在的Activity
 fun Fragment.finish()
+```
+
+### ByteArrayExt
+
+```kotlin
+//保存byte[]到文件
+fun ByteArray.saveFile(path: String)
+//byte[]转Bitmap
+fun ByteArray.toBitmap(opts: BitmapFactory.Options): Bitmap
 ```
 
 ### ActivityMgr
