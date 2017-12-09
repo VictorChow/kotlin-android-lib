@@ -66,6 +66,10 @@ fun View.resize(width: Int, height: Int) {
 inline val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
 
+operator fun ViewGroup.get(index: Int): View {
+    return getChildAt(index)
+}
+
 fun View.animateWidth(toValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == width || layoutParams == null) {
         return AnimatePropsWrapper(null)
@@ -116,8 +120,8 @@ fun TextView.deleteLine() {
     paint.isAntiAlias = true
 }
 
-fun TextView.bold() {
-    paint.isFakeBoldText = true
+fun TextView.bold(isBold: Boolean = true) {
+    paint.isFakeBoldText = isBold
     paint.isAntiAlias = true
 }
 

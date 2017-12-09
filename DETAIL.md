@@ -37,6 +37,8 @@ fun View.animateYBy(toValue: Int, duration: Long, interpolator: Interpolator)
 
 //ViewGroup子View
 val ViewGroup.children: List<View>
+//ViewGroup子View.getChildAt(index)
+
 
 //下划线
 fun TextView.underLine()
