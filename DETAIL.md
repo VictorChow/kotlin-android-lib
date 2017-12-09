@@ -37,7 +37,10 @@ fun View.animateYBy(toValue: Int, duration: Long, interpolator: Interpolator)
 
 //ViewGroup子View
 val ViewGroup.children: List<View>
+
 //ViewGroup子View.getChildAt(index)
+//val v = ViewGroup[index]
+operator fun ViewGroup.get(index: Int)
 
 
 //下划线
@@ -45,7 +48,7 @@ fun TextView.underLine()
 //中划线
 fun TextView.deleteLine()
 //加粗
-fun TextView.bold()
+fun TextView.bold(b: Boolean)
 
 //setText getText
 var EditText.value: String
