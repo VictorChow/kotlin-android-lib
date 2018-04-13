@@ -13,17 +13,17 @@ import android.widget.EditText
  * Created by Victor on 2017/9/12. (ง •̀_•́)ง
  */
 
-inline fun <reified T : Activity> Fragment.goActivity() = activity?.startActivity(Intent(activity, T::class.java))
+inline fun <reified T : Activity> Fragment.goActivity() = startActivity(Intent(activity, T::class.java))
 
-inline fun <reified T : Activity> Fragment.goActivity(requestCode: Int) = activity?.startActivityForResult(Intent(activity, T::class.java), requestCode)
+inline fun <reified T : Activity> Fragment.goActivity(requestCode: Int) = startActivityForResult(Intent(activity, T::class.java), requestCode)
 
 inline fun <reified T : Service> Fragment.goService() = activity?.startService(Intent(activity, T::class.java))
 
 inline fun <reified T : Service> Fragment.goService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE) = activity?.bindService(Intent(activity, T::class.java), sc, flags)
 
 fun Fragment.hideInputMethod() {
-    if (activity != null && activity.window.peekDecorView() != null) {
-        inputMethodManager.hideSoftInputFromWindow(activity.window.peekDecorView().windowToken, 0)
+    if (activity != null && activity!!.window.peekDecorView() != null) {
+        inputMethodManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)
     }
 }
 
