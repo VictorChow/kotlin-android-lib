@@ -1,10 +1,13 @@
 package pers.victor.ext
 
 import android.app.Activity
+import android.app.Fragment
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -31,7 +34,7 @@ fun Activity.showInputMethod(v: EditText) {
     inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_FORCED)
 }
 
-fun Activity.clearWindowBackground() = window.setBackgroundDrawable(null)
+fun Activity.clearWindowBackground() = window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 fun Activity.steepStatusBar() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
