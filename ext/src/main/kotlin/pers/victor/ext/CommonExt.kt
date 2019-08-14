@@ -34,10 +34,10 @@ fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean 
 
 fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
 
-fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel)))
+fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$tel")))
 
 fun Context.sms(phone: String?, body: String = "") {
-    val smsToUri = Uri.parse("smsto:" + phone)
+    val smsToUri = Uri.parse("smsto:$phone")
     val intent = Intent(Intent.ACTION_SENDTO, smsToUri)
     intent.putExtra("sms_body", body)
     startActivity(intent)
@@ -57,4 +57,8 @@ infix fun <T> Boolean.yes(trueValue: () -> T) = TernaryOperator(trueValue, this)
 
 class TernaryOperator<out T>(val trueValue: () -> T, val bool: Boolean)
 
-infix inline fun <T> TernaryOperator<T>.no(falseValue: () -> T) = if (bool) trueValue() else falseValue()
+inline infix fun <T> TernaryOperator<T>.no(falseValue: () -> T) = if (bool) trueValue() else falseValue()
+
+fun Int.isOdd() = this and 0x1 == 1
+
+fun Int.isEven() = !this.isOdd()

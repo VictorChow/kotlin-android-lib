@@ -50,6 +50,9 @@ fun TextView.deleteLine()
 //加粗
 fun TextView.bold(b: Boolean)
 
+//获取或设置RadioGroup选中的RadioButton的index
+var RadioGroup.checkedIndex
+
 //setText getText
 var EditText.value: String
 //所有字母大写
@@ -106,6 +109,9 @@ fun Context.sms(phone: String?, body: String)
 fun isMainThread()
 //是否连接网络
 fun isNetworkConnected(): Boolean
+
+fun Int.isOdd(): Boolean
+fun Int.isEven(): Boolean
 ```
 
 ### DisplayExt
