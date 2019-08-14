@@ -22,6 +22,16 @@ inline fun <reified T : Activity> Activity.goActivity() = startActivity(Intent(t
 
 inline fun <reified T : Activity> Activity.goActivity(requestCode: Int) = startActivityForResult(Intent(this, T::class.java), requestCode)
 
+inline fun <reified T : Activity> Activity.goActivity(vararg extras: Any?) {
+    val intent = Intent(this, T::class.java)
+    if (extras.size % 2 == 0) {
+        (0 until extras.size step 2)
+                .filter { extras[it + 1] != null }
+                .forEach { IntentData.putExtra(intent, extras[it].toString(), extras[it + 1]!!) }
+    }
+    startActivity(intent)
+}
+
 inline fun <reified T : Service> Activity.goService() = startService(Intent(this, T::class.java))
 
 inline fun <reified T : Service> Activity.goService(sc: ServiceConnection, flags: Int = Context.BIND_AUTO_CREATE) = bindService(Intent(this, T::class.java), sc, flags)

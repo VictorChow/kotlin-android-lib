@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 
 
@@ -87,8 +89,7 @@ fun View.animateWidth(toValue: Int, duration: Long = pers.victor.ext.duration, i
     })
 }
 
-fun View.animateWidthBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
-        = animateWidth(width + byValue, duration, interpolator)
+fun View.animateWidthBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator) = animateWidth(width + byValue, duration, interpolator)
 
 fun View.animateHeight(toValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == height || layoutParams == null) {
@@ -107,8 +108,7 @@ fun View.animateHeight(toValue: Int, duration: Long = pers.victor.ext.duration, 
     })
 }
 
-fun View.animateHeightBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
-        = animateHeight(height + byValue, duration, interpolator)
+fun View.animateHeightBy(byValue: Int, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator) = animateHeight(height + byValue, duration, interpolator)
 
 fun TextView.underLine() {
     paint.flags = paint.flags or Paint.UNDERLINE_TEXT_FLAG
@@ -178,8 +178,7 @@ fun View.animateX(toValue: Float, duration: Long = pers.victor.ext.duration, int
     })
 }
 
-fun View.animateXBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
-        = animateX(translationX + toValue, duration, interpolator)
+fun View.animateXBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator) = animateX(translationX + toValue, duration, interpolator)
 
 fun View.animateY(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator): AnimatePropsWrapper {
     if (toValue == translationY) {
@@ -194,8 +193,7 @@ fun View.animateY(toValue: Float, duration: Long = pers.victor.ext.duration, int
     })
 }
 
-fun View.animateYBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator)
-        = animateY(translationY + toValue, duration, interpolator)
+fun View.animateYBy(toValue: Float, duration: Long = pers.victor.ext.duration, interpolator: Interpolator = pers.victor.ext.interpolator) = animateY(translationY + toValue, duration, interpolator)
 
 var EditText.value: String
     get() = text.toString()
@@ -242,3 +240,13 @@ fun View.isVisible() = visibility == View.VISIBLE
 fun View.isGone() = visibility == View.GONE
 
 fun View.isInvisible() = visibility == View.INVISIBLE
+
+var RadioGroup.checkedIndex: Int
+    get() = (0 until childCount).firstOrNull { (getChildAt(it) as RadioButton).isChecked } ?: -1
+    set(value) {
+        if (value !in 0 until childCount) {
+            children.map { it as RadioButton }.filter { it.isChecked }.forEach { it.isChecked = false }
+        } else {
+            (getChildAt(value) as RadioButton).isChecked = true
+        }
+    }
