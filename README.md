@@ -24,11 +24,11 @@ allprojects {
 
 ```groovy
 //依赖项
-//org.jetbrains.kotlin:kotlin-stdlib-jre
+//org.jetbrains.kotlin:kotlin-stdlib-jdk7
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.2.3'
+    compile 'com.github.VictorChow:kotlin-android-lib:1.2.4'
 }
 ```
 
