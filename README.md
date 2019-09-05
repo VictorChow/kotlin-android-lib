@@ -31,7 +31,7 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:x.x.x'
+    compile 'com.github.VictorChow:kotlin-android-lib:2.0.0'
 }
 ```
 
