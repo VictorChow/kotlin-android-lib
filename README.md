@@ -4,6 +4,9 @@
 
 [[点这查看所有支持的扩展API(readmore)]](./DETAIL.md)
 
+### 2.x - AndroidX
+### 1.x - Android Support
+
 ## Usage
 
 ```kotlin
@@ -28,7 +31,7 @@ allprojects {
 //com.android.support:appcompat-v7
 
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.2.4'
+    compile 'com.github.VictorChow:kotlin-android-lib:x.x.x'
 }
 ```
 

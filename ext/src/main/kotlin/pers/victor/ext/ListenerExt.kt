@@ -2,10 +2,10 @@ package pers.victor.ext
 
 import android.animation.Animator
 import android.os.Build
-import android.support.v4.view.ViewPager
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
