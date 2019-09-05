@@ -21,7 +21,7 @@ import android.widget.TextView
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
  */
 
-private val duration = 750L
+private const val duration = 750L
 private inline val interpolator: Interpolator
     get() = AccelerateDecelerateInterpolator()
 

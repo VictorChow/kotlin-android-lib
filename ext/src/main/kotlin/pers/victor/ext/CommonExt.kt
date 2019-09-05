@@ -7,12 +7,12 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Looper
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.LayoutRes
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
@@ -44,14 +44,6 @@ fun Context.sms(phone: String?, body: String = "") {
 }
 
 fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
-
-fun isNetworkConnected(): Boolean {
-    val mNetworkInfo = connectivityManager.activeNetworkInfo
-    if (mNetworkInfo != null) {
-        return mNetworkInfo.isAvailable
-    }
-    return false
-}
 
 infix fun <T> Boolean.yes(trueValue: () -> T) = TernaryOperator(trueValue, this)
 
