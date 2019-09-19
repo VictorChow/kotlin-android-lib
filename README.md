@@ -28,10 +28,15 @@ allprojects {
 ```groovy
 //依赖项
 //org.jetbrains.kotlin:kotlin-stdlib-jdk7
-//com.android.support:appcompat-v7
 
+2.x
 dependencies {
     compile 'com.github.VictorChow:kotlin-android-lib:2.0.0'
+}
+
+1.x
+dependencies {
+    compile 'com.github.VictorChow:kotlin-android-lib:1.2.4'
 }
 ```
 
