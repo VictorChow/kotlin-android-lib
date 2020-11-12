@@ -31,12 +31,12 @@ allprojects {
 
 2.x
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:2.0.0'
+    implementation 'com.github.VictorChow:kotlin-android-lib:2.0.0'
 }
 
 1.x
 dependencies {
-    compile 'com.github.VictorChow:kotlin-android-lib:1.2.4'
+    implementation 'com.github.VictorChow:kotlin-android-lib:1.2.4'
 }
 ```
 
