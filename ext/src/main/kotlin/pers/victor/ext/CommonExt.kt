@@ -7,12 +7,12 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Looper
-import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 
 /**
  * Created by Victor on 2017/8/18. (ง •̀_•́)ง
@@ -30,9 +30,11 @@ fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable
 
 fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(app, resId)
 
-fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(app).inflate(layoutId, parent, attachToRoot)!!
+fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false, ctx: Context = app) = LayoutInflater.from(app).inflate(layoutId, parent, attachToRoot)!!
 
 fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
+
+fun inflate(@LayoutRes layoutId: Int, ctx: Context) = inflate(layoutId, null, ctx = ctx)
 
 fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$tel")))
 
